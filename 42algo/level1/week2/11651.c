@@ -1,43 +1,61 @@
 #include <stdio.h>
+typedef struct	s_xy{
+	int x;
+	int y;
+}				t_xy;
+
+int qsoty(t_xy xy[],int l, int r);
+void quicky(t_xy xy[],int l, int r);
 int main()
 {
-	int a,c,d,f;
+	int a,aa,c;
 	scanf("%d",&a);
-	int x[a], y[a];
+	t_xy xy[100000];
 	for(int b = 0;b<a;b++)
+		scanf("%d %d",&xy[b].x,&xy[b].y);
+	quicky(xy,0,a-1);
+	for(int b = 0;b<a;b++)
+		printf("%d %d\n",xy[b].x,xy[b].y);
+}
+int qsoty(t_xy xy[],int l, int r)
+{
+	int q,w,e;
+	t_xy d;
+	int low, high;
+
+	low = l+1;
+	high = r;
+	d = xy[l];
+	while(low < high)
 	{
-		scanf("%d %d",&x[b],&y[b]);
-	}
-	for(int i = 0;i<a-1;i++)
-	{
-		f = 0;
-		for(int b = i+1;b<a;b++)
+		while(low <=r && (d.y > xy[low].y))
 		{
-			if(y[i] > y[b])
-			{
-				f = 2;
-				c = y[i];
-				y[i] = y[b];
-				y[b] = c;
-				c = x[i];
-				x[i] = x[b];
-				x[b] = c;
-			}
-			else if (y[i] == y[b] && x[i] > x[b])
-			{
-				f = 2;
-				c = x[i];
-				x[i] = x[b];
-				x[b] = c;
-			}
+			low++;
 		}
-		if (f == 0)
-			break;
+		while(high >=l && (d.y < xy[high].y))
+		{
+			high--;
+		}
+		if (low < high)
+		{
+			d = xy[low];
+			xy[low] = xy[high];
+			xy[high] = d;
+		}
 	}
-	d = 0;
-	while(d<a)
+	d = xy[l];
+	xy[l] = xy[high];
+	xy[high] = d;
+	return (high);
+}
+void quicky(t_xy xy[],int l, int r)
+{
+	int kk;
+	if (l<r)
 	{
-		printf("%d %d\n",x[d],y[d]);
-		d++;
+		kk = qsoty(xy,l,r);
+		quicky(xy,l,kk-1);
+		quicky(xy,kk+1,r);
 	}
 }
+

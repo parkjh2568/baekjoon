@@ -17,7 +17,9 @@ int main()
                                 for(j = 1;cro[i][j];j++)
                                 {
                                         if (a[b+j]==cro[i][j])
-                                                trg++;
+                                            trg++;
+										else
+											trg = 0;
                                 }
                         }
                         if (j == (trg+1))

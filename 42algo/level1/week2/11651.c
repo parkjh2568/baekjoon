@@ -10,9 +10,11 @@ int main()
 {
 	int a,aa,c;
 	scanf("%d",&a);
-	t_xy xy[100000];
+	t_xy xy[a];
 	for(int b = 0;b<a;b++)
+	{
 		scanf("%d %d",&xy[b].x,&xy[b].y);
+	}
 	quicky(xy,0,a-1);
 	for(int b = 0;b<a;b++)
 		printf("%d %d\n",xy[b].x,xy[b].y);
@@ -26,17 +28,17 @@ int qsoty(t_xy xy[],int l, int r)
 	low = l+1;
 	high = r;
 	d = xy[l];
-	while(low < high)
+	while(low <= high)
 	{
-		while(low <=r && (d.y > xy[low].y))
-		{
+		while(low <= r && (d.y >= xy[low].y))
+		{	
 			low++;
 		}
-		while(high >=l && (d.y < xy[high].y))
+		while(high > l && (d.y <= xy[high].y))
 		{
 			high--;
 		}
-		if (low < high)
+		if (low <= high)
 		{
 			d = xy[low];
 			xy[low] = xy[high];

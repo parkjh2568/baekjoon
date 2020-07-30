@@ -46,5 +46,5 @@ int main()
 		if (count == a)
 			ans++;
 	}
-	printf("%d",ans);
+	printf("%d\n",ans);
 }

@@ -26,5 +26,4 @@ function solution(lottos, win_nums) {
     }
     console.log(6 - i -j + 1, 6 - i + 1);
 }
-
 solution(lottos, wind_nums);
